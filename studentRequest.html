@@ -105,9 +105,9 @@
 												<i class="dw dw-more"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+												<a class="dropdown-item" href="#" data-toggle="modal" data-target="#task-add"><i class="dw dw-eye"></i> View</a>
+												<a class="dropdown-item" href="#"><i class="dw dw-check"></i> Accept</a>
+												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Reject</a>
 											</div>
 										</div>
 									</td>
@@ -124,9 +124,9 @@
 												<i class="dw dw-more"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+												<a class="dropdown-item" href="#"  data-toggle="modal" data-target="#task-add"><i class="dw dw-eye"></i> View</a>
+												<a class="dropdown-item" href="#"><i class="dw dw-check"></i> Accept</a>
+												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Reject</a>
 											</div>
 										</div>
 									</td>
@@ -144,9 +144,9 @@
 												<i class="dw dw-more"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+												<a class="dropdown-item" data-toggle="modal" data-target="#task-add" href="#"><i class="dw dw-eye"></i> View</a>
+												<a class="dropdown-item" href="#"><i class="dw dw-check"></i> Accept</a>
+												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Reject</a>
 											</div>
 										</div>
 									</td>
@@ -157,6 +157,100 @@
 					</div>
 				</div>
 
+			</div>
+			<div class="modal fade customscroll" id="task-add" tabindex="-1" role="dialog">
+				<div class="modal-dialog  modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Student Information</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Close Modal">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body pd-0">
+							<div class="task-list-form">
+								<ul>
+									<li>
+										<form>
+											<div class="form-group row">
+												<label class="col-md-4">Student Name</label>
+												
+											</div>
+											<div class="form-group row">
+												<label class="col-md-4">Branch </label>
+												<div class="col-md-8">
+													<textarea class="form-control"></textarea>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-4">Semester</label>
+												<div class="col-md-8">
+													<select class="selectpicker form-control" data-style="btn-outline-primary" title="Not Chosen" multiple="" data-selected-text-format="count" data-count-selected-text= "{0} people selected">
+														<option>Ferdinand M.</option>
+														<option>Don H. Rabon</option>
+														<option>Ann P. Harris</option>
+														<option>Katie D. Verdin</option>
+														<option>Christopher S. Fulghum</option>
+														<option>Matthew C. Porter</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group row mb-0">
+												<label class="col-md-4">Due Date</label>
+												<div class="col-md-8">
+													<input type="text" class="form-control date-picker">
+												</div>
+											</div>
+										</form>
+									</li>
+									<li>
+										<a href="javascript:;" class="remove-task"  data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Remove Task"><i class="ion-minus-circled"></i></a>
+										<form>
+											<div class="form-group row">
+												<label class="col-md-4">Task Type</label>
+												<div class="col-md-8">
+													<input type="text" class="form-control">
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-4">Task Message</label>
+												<div class="col-md-8">
+													<textarea class="form-control"></textarea>
+												</div>
+											</div>
+											<div class="form-group row">
+												<label class="col-md-4">Assigned to</label>
+												<div class="col-md-8">
+													<select class="selectpicker form-control" data-style="btn-outline-primary" title="Not Chosen" multiple="" data-selected-text-format="count" data-count-selected-text= "{0} people selected">
+														<option>Ferdinand M.</option>
+														<option>Don H. Rabon</option>
+														<option>Ann P. Harris</option>
+														<option>Katie D. Verdin</option>
+														<option>Christopher S. Fulghum</option>
+														<option>Matthew C. Porter</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group row mb-0">
+												<label class="col-md-4">Due Date</label>
+												<div class="col-md-8">
+													<input type="text" class="form-control date-picker">
+												</div>
+											</div>
+										</form>
+									</li>
+								</ul>
+							</div>
+							<div class="add-more-task">
+								<a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add Task"><i class="ion-plus-circled"></i> Add More Task</a>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary">Add</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="footer-wrap pd-20 mb-20 card-box">
 				placeQue - Smart Placement System <a href="https://github.com/dropways" target="_blank">NRSH</a>
