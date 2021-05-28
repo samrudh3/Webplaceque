@@ -3,7 +3,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+	<title>placeQue - Smart Placement System | Training & Placement</title>
 
 	<!-- Site favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png">
@@ -40,7 +40,7 @@
 			</div>
 			<div class="login-menu">
 				<ul>
-					<li><a href="register.html">Register</a></li>
+					<li><a href="register.html">Welcome Back</a></li>
 				</ul>
 			</div>
 		</div>
@@ -54,9 +54,9 @@
 				<div class="col-md-6 col-lg-5">
 					<div class="login-box bg-white box-shadow border-radius-10">
 						<div class="login-title">
-							<h2 class="text-center text-primary">Login To placeQue </h2>
+							<h2 class="text-center text-primary">Login to placeQue </h2>
 						</div>
-						<form>
+						
 							<div class="select-role">
 								<div class="btn-group btn-group-toggle" data-toggle="buttons">
 									<label class="btn active">
@@ -66,44 +66,40 @@
 										Admin
 									</label>
 									<label class="btn">
-										<input type="radio" name="options" id="user">
+										<input type="radio" name="options" id="company">
 										<div class="icon"><img src="vendors/images/person.svg" class="svg" alt=""></div>
 										<span>Company login</span>
 										
 									</label>
+									
 									<label class="btn active">
-										<input type="radio" name="options" id="admin">
+										<input type="radio" name="options" id="department">
 										<div class="icon"><img src="vendors/images/person.svg" class="svg" alt=""></div>
 										<span> Department Login</span>
 										
 									</label>
 									<label class="btn active">
-										<input type="radio" name="options" id="admin">
+										<input type="radio" name="options" id="other">
 										<div class="icon"><img src="vendors/images/briefcase.svg" class="svg" alt=""></div>
 										<span> Others</span>
-										
 									</label>
 								</div>
 							</div>
 							<div class="input-group custom">
-								<input type="text" class="form-control form-control-lg" placeholder="Username">
+								<input type="text" class="form-control form-control-lg" placeholder="Email" id="email">
 								<div class="input-group-append custom">
 									<span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
 								</div>
 							</div>
 							<div class="input-group custom">
-								<input type="password" class="form-control form-control-lg" placeholder="**********">
+								<input type="password" class="form-control form-control-lg" id="password" placeholder="**********">
 								<div class="input-group-append custom">
 									<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
 								</div>
 							</div>
+							<p id="errorText" style="color: red;"></p>
 							<div class="row pb-30">
-								<div class="col-6">
-									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input" id="customCheck1">
-										<label class="custom-control-label" for="customCheck1">Remember</label>
-									</div>
-								</div>
+							
 								<div class="col-6">
 									<div class="forgot-password"><a href="forgot-password.html">Forgot Password</a></div>
 								</div>
@@ -115,13 +111,13 @@
 											use code for form submit
 											<input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
 										-->
-										<a class="btn btn-primary btn-lg btn-block" href="index.html">Sign In</a>
+										<a class="btn btn-primary btn-lg btn-block" onclick="login()" id="loginBtn">Sign In</a>
 									</div>
 									
 									
 								</div>
 							</div>
-						</form>
+						
 					</div>
 				</div>
 			</div>
@@ -132,5 +128,128 @@
 	<script src="vendors/scripts/script.min.js"></script>
 	<script src="vendors/scripts/process.js"></script>
 	<script src="vendors/scripts/layout-settings.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+
+	<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-analytics.js"></script>
+  
+	<!-- Add Firebase products that you want to use -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
 </body>
+<script>
+	var firebaseConfig = {
+		apiKey: "AIzaSyBrjKsOT5YXZSYFVOa3PeBi3997XdKJRbw",
+		authDomain: "placeque-47156.firebaseapp.com",
+		databaseURL: "https://placeque-47156-default-rtdb.firebaseio.com",
+		projectId: "placeque-47156",
+		storageBucket: "placeque-47156.appspot.com",
+		messagingSenderId: "387944466952",
+		appId: "1:387944466952:web:3ec6cfefc5682e3431dfbd",
+		measurementId: "G-N7RD97TPP5"
+	};
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
+	firebase.analytics();
+	var user = firebase.auth().currentUser;
+	
+	if (user) {
+	// User is signed in.
+	if (user != null) {
+		window.location="index.html"
+		name = user.displayName;
+		email = user.email;
+		photoUrl = user.photoURL;
+		emailVerified = user.emailVerified;
+		uid = user.uid;  
+		// The user's ID, unique to the Firebase project. Do NOT use
+		// this value to authenticate with your backend server, if
+		// you have one. Use User.getToken() instead.
+	}
+	} else {
+	// No user is signed in.
+	}
+	function login(){
+		document.getElementById("loginBtn").style.backgroundColor="orange"
+		document.getElementById("loginBtn").innerHTML="Authenticating 🕓"
+		let email = document.querySelector("#email").value
+		let password = document.querySelector("#password").value
+		
+		firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
+			document.getElementById("loginBtn").style.backgroundColor="green"
+			document.getElementById("loginBtn").innerHTML="Verified ✔"
+			
+			// alert("Success")
+			firebase.auth().onAuthStateChanged(function(user) {
+			if (user) {
+				var user = firebase.auth().currentUser;
+				window.localStorage.setItem("currentUser",user.email)
+				setTimeout(function(){
+					window.location="index.html"
+				},1000)
+				// user.sendEmailVerification().then(function() {
+				// // Email sent.
+				// console.log("emailsent")
+				// }).catch(function(error) {
+				// // An error happened.
+				// });
+				// User is signed in.
+				
+				var displayName = user.displayName;
+				var email = user.email;
+
+				var emailVerified = user.emailVerified;
+				var photoURL = user.photoURL;
+				var isAnonymous = user.isAnonymous;
+				var uid = user.uid;
+				var providerData = user.providerData;
+
+				console.log(email + "" +providerData)
+				
+				// ...
+			}else {
+				document.getElementById("email").style.borderColor="red"
+				document.getElementById("password").style.borderColor="red"
+
+				// User is signed out.
+				// ...
+			}
+			});
+		}).catch(function(error) {
+		// Handle Errors here.
+			document.getElementById("loginBtn").style.backgroundColor="red"
+			document.getElementById("loginBtn").innerHTML="Sign In"
+			document.getElementById("email").style.borderColor="red"
+			document.getElementById("password").style.borderColor="red"
+			document.getElementById("errorText").innerHTML="Invalid Username or password"
+			setTimeout(function(){
+				document.getElementById("loginBtn").style.backgroundColor="blue"
+				document.getElementById("email").style.borderColor="gray"
+				document.getElementById("password").style.borderColor="gray"
+				document.getElementById("errorText").innerHTML=""
+			},3000)
+			var errorCode = error.code;
+			var errorMessage = error.message;
+			console.log(errorCode);
+			console.log(errorMessage);
+		});
+	}
+
+	// firebase.auth().onAuthStateChanged(function(user) {
+	// if (user) {
+	// 	// User is signed in.
+	// 	var displayName = user.displayName;
+	// 	var email = user.email;
+	// 	var emailVerified = user.emailVerified;
+	// 	var photoURL = user.photoURL;
+	// 	var isAnonymous = user.isAnonymous;
+	// 	var uid = user.uid;
+	// 	var providerData = user.providerData;
+	// 	// ...
+	// } else {
+	// 	// User is signed out.
+	// 	// ...
+	// }
+	// });
+</script>
 </html>
