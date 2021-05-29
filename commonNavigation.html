@@ -13,7 +13,35 @@
 
 <!-- <script src="vendors/scripts/dashboard.js"></script> -->
 
+<script>
+    var user = window.localStorage.getItem("currentUser")
+	
+	if (user) {
 
+	// User is signed in.
+	if (user != null) {
+		name = user.displayName;
+		email = user.email;
+		photoUrl = user.photoURL;
+		emailVerified = user.emailVerified;
+		uid = user.uid;  
+		setTimeout(function(){
+			document.getElementById("user_email").innerHTML=user
+		},1000)
+		// The user's ID, unique to the Firebase project. Do NOT use
+		// this value to authenticate with your backend server, if
+		// you have one. Use User.getToken() instead.
+	}
+	} else {
+	// No user is signed in.
+        window.location ="login.html"
+	}
+    function logout(){
+       
+        window.localStorage.removeItem("currentUser")
+        window.location="login.html"
+    }
+</script>
 
 <div class="pre-loader">
     <div class="pre-loader-box">
@@ -145,7 +173,7 @@
                     <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
                     <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
                     <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-                    <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
+                    <a class="dropdown-item" onclick="logout()" style="cursor: pointer;"><i class="dw dw-logout"></i> Log Out</a>
                 </div>
             </div>
         </div>
