@@ -152,23 +152,18 @@
 	firebase.initializeApp(firebaseConfig);
 	firebase.analytics();
 	var user = firebase.auth().currentUser;
-	
-	if (user) {
-	// User is signed in.
-	if (user != null) {
-		window.location="index.html"
-		name = user.displayName;
-		email = user.email;
-		photoUrl = user.photoURL;
-		emailVerified = user.emailVerified;
-		uid = user.uid;  
-		// The user's ID, unique to the Firebase project. Do NOT use
-		// this value to authenticate with your backend server, if
-		// you have one. Use User.getToken() instead.
-	}
-	} else {
-	// No user is signed in.
-	}
+	firebase.auth().onAuthStateChanged(function(user) {
+		if(user){
+			let current_user=user;
+			
+			window.location="index.html"
+		
+		}else{
+			
+		}
+
+	})
+
 	function login(){
 		document.getElementById("loginBtn").style.backgroundColor="orange"
 		document.getElementById("loginBtn").innerHTML="Authenticating 🕓"
@@ -217,20 +212,26 @@
 			});
 		}).catch(function(error) {
 		// Handle Errors here.
-			document.getElementById("loginBtn").style.backgroundColor="red"
-			document.getElementById("loginBtn").innerHTML="Sign In"
-			document.getElementById("email").style.borderColor="red"
-			document.getElementById("password").style.borderColor="red"
-			document.getElementById("errorText").innerHTML="Invalid Username or password"
-			setTimeout(function(){
-				document.getElementById("loginBtn").style.backgroundColor="blue"
-				document.getElementById("email").style.borderColor="gray"
-				document.getElementById("password").style.borderColor="gray"
-				document.getElementById("errorText").innerHTML=""
-			},3000)
+			
 			var errorCode = error.code;
 			var errorMessage = error.message;
 			console.log(errorCode);
+			if(errorCode.includes("auth/network-request-failed")){
+				document.getElementById("errorText").innerHTML="Check your internet connectivtiy & try again. "
+			}else{
+				document.getElementById("loginBtn").style.backgroundColor="red"
+				document.getElementById("loginBtn").innerHTML="Sign In"
+				document.getElementById("email").style.borderColor="red"
+				document.getElementById("password").style.borderColor="red"
+				document.getElementById("errorText").innerHTML="Invalid Username or password"
+				setTimeout(function(){
+					document.getElementById("loginBtn").style.backgroundColor="blue"
+					document.getElementById("email").style.borderColor="gray"
+					document.getElementById("password").style.borderColor="gray"
+					document.getElementById("errorText").innerHTML=""
+				},3000)
+				}
+
 			console.log(errorMessage);
 		});
 	}

@@ -285,6 +285,18 @@
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
+                            <span class="micon dw dw-edit2"></span><span class="mtext">Manage Quiz</span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="add-quiz.html">Add a Quiz</a></li>
+                            <li><a href="advanced-components.html">All Quiz's</a></li>
+                            <li><a href="form-wizard.html">Quiz Scores</a></li>
+                            <li><a href="html5-editor.html">Send Quiz Results</a></li>
+                    
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon dw dw-edit2"></span><span class="mtext">Forms</span>
                         </a>
                         <ul class="submenu">
@@ -460,6 +472,17 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="alert-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content bg-danger text-white">
+                <div class="modal-body text-center">
+                    <h3 class="text-white mb-15"><i class="fa fa-exclamation-triangle"></i> Alert</h3>
+                    <p>Server Error ! Please Refresh the page.</p>
+                    <button type="button" class="btn btn-light" data-dismiss="modal" onclick="refresh()">Refresh</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="mobile-menu-overlay"></div>
     
     <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
@@ -475,7 +498,7 @@
    let index=0;
     let interval= setInterval(function(){
         index++;
-        if(index==5){
+        if(index==1){
             clearInterval(interval)
         }
         var firebaseConfig = {
@@ -493,20 +516,27 @@
 	firebase.analytics();
     firebase.auth().onAuthStateChanged(function(user) {
 		if(user){
+
 			let current_user=user;
-			console.log("User found"+ current_user.uid)
-			setTimeout(function(){
-		    	document.getElementById("user_email").innerHTML=current_user.email
-		    },1000)
+            index=1;
+		    document.getElementById("user_email").innerHTML=current_user.email
+		    
 		}
 
 	})
-    function logout(){
-       
-        window.localStorage.removeItem("currentUser")
-        window.location="login.html"
-    }
     },1000)
+    function logout(){
+    
+        firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+        window.location="login.html"
+        }).catch(function(error) {
+        // An error happened.
+        console.log(error);
+        });
+        
+    }
+
 
 </script>
 </html>

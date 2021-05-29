@@ -255,40 +255,5 @@
 
 </body>
 </html>
-<script>
-	var firebaseConfig = {
-		apiKey: "AIzaSyBrjKsOT5YXZSYFVOa3PeBi3997XdKJRbw",
-		authDomain: "placeque-47156.firebaseapp.com",
-		databaseURL: "https://placeque-47156-default-rtdb.firebaseio.com",
-		projectId: "placeque-47156",
-		storageBucket: "placeque-47156.appspot.com",
-		messagingSenderId: "387944466952",
-		appId: "1:387944466952:web:3ec6cfefc5682e3431dfbd",
-		measurementId: "G-N7RD97TPP5"
-	};
-	// Initialize Firebase
-	firebase.initializeApp(firebaseConfig);
-	firebase.analytics();
-	var user = window.localStorage.getItem("currentUser")
-	
-	if (user) {
 
-	// User is signed in.
-	if (user != null) {
-		name = user.displayName;
-		email = user.email;
-		photoUrl = user.photoURL;
-		emailVerified = user.emailVerified;
-		uid = user.uid;  
-		setTimeout(function(){
-			document.getElementById("user_email").innerHTML=user
-		},1000)
-		// The user's ID, unique to the Firebase project. Do NOT use
-		// this value to authenticate with your backend server, if
-		// you have one. Use User.getToken() instead.
-	}
-	} else {
-	// No user is signed in.
-	}
-</script>
 </html>
