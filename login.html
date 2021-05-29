@@ -183,7 +183,7 @@
 			firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {
 				var user = firebase.auth().currentUser;
-				window.localStorage.setItem("currentUser",user.email)
+			
 				setTimeout(function(){
 					window.location="index.html"
 				},1000)
@@ -204,7 +204,7 @@
 				var uid = user.uid;
 				var providerData = user.providerData;
 
-				console.log(email + "" +providerData)
+				//console.log(email + "" +providerData)
 				
 				// ...
 			}else {
