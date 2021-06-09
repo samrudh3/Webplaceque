@@ -140,7 +140,7 @@
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                         <span class="user-icon">
-                            <img src="vendors/images/photo1.jpg" alt="">
+                            <img src="https://saividya.edu.in/images/logo2.jpg" alt="">
                         </span>
                         <span class="user-name" id="user_email"></span>
                     </a>
@@ -260,16 +260,22 @@
                             <span class="micon dw dw-user1"></span><span class="mtext">Student Validation</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="timeline.html" class="dropdown-toggle no-arrow">
-                            <span class="micon dw dw-upload1"></span><span class="mtext">Post on Timeline</span>
+                    <li class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle ">
+                            <span class="micon dw dw-upload1"></span><span class="mtext">Timeline</span>
                         </a>
+                        <ul class="submenu">
+                            <li><a href="timeline.html">Post on timeline</a></li>
+                            <li><a href="viewtimeline.html">View all posts</a></li>
+                           
+                    
+                        </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="companyDrive.html" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-upload1"></span><span class="mtext">Company Drive</span>
                         </a>
-                    </li>
+                    </li> -->
                     
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
@@ -277,7 +283,10 @@
                         </a>
                         <ul class="submenu">
                             <li><a href="newDrive.html">Add a Drive</a></li>
+<<<<<<< HEAD
                             <!-- <li><a href="advanced-components.html">Upcoming Drives</a></li> -->
+=======
+>>>>>>> e1f8d8ea6f9701a543d43c930a878682efa9dd64
                             <li><a href="upcomingDrive.html">Upcoming Drives</a></li>
                             <li><a href="form-wizard.html">Drive Results</a></li>
                             <li><a href="html5-editor.html">Send Drive Results</a></li>
@@ -290,14 +299,17 @@
                         </a>
                         <ul class="submenu">
                             <li><a href="add-quiz.html">Add a Quiz</a></li>
+<<<<<<< HEAD
                             <!-- <li><a href="advanced-components.html">All Quiz's</a></li> -->
+=======
+>>>>>>> e1f8d8ea6f9701a543d43c930a878682efa9dd64
                             <li><a href="allQuiz.html">All Quiz's</a></li>
                             <li><a href="form-wizard.html">Quiz Scores</a></li>
                             <li><a href="html5-editor.html">Send Quiz Results</a></li>
                     
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <!-- <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
                             <span class="micon dw dw-edit2"></span><span class="mtext">Forms</span>
                         </a>
@@ -469,7 +481,7 @@
                             <span class="micon dw dw-paper-plane1"></span>
                             <span class="mtext">Landing Page <img src="vendors/images/coming-soon.png" alt="" width="25"></span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -523,7 +535,9 @@
             index=1;
 		    document.getElementById("user_email").innerHTML=current_user.email
 		    
-		}
+		}else{
+         window.location="login.html"
+        }
 
 	})
     },1000)
@@ -531,7 +545,8 @@
     
         firebase.auth().signOut().then(function() {
         // Sign-out successful.
-        window.location="login.html"
+      
+         window.location="login.html"
         }).catch(function(error) {
         // An error happened.
         console.log(error);
